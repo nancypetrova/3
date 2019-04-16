@@ -1,8 +1,7 @@
 let canvas = document.createElement('canvas');
 document.body.appendChild(canvas); // adds the canvas to the body element
 ctx = canvas.getContext('2d');
-
-canvas.width = 600;
+canvas.width = 900;
 canvas.height = 600;
 img_1 = new Image();
 img_2 = new Image();
@@ -15,20 +14,21 @@ img_4.crossOrigin = "anonymous";
 img_1.src = 'https://source.unsplash.com/collection/827807/';
 img_2.src = 'https://source.unsplash.com/collection/1120118/';
 img_3.src = 'https://source.unsplash.com/collection/2411320/';
-img_4.src = 'https://source.unsplash.com/collection/1127163/';
+img_4.src = 'https://source.unsplash.com/collection/1665483/';
+
 function drawImages() {
     img_1.onload = function () {
-        ctx.drawImage(img_1, 0, 0, 300, 200);
+        ctx.drawImage(img_1, 0, 0, 450, 300);
     };
 
     img_2.onload = function () {
-        ctx.drawImage(img_2, 0, 200, 300, 200)
+        ctx.drawImage(img_2, 450, 0, 450, 300)
     };
     img_3.onload = function () {
-        ctx.drawImage(img_3, 300, 200, 300, 200)
+        ctx.drawImage(img_3, 450, 300, 450, 300)
     };
     img_4.onload = function () {
-        ctx.drawImage(img_4, 300, 0, 300, 200)
+        ctx.drawImage(img_4, 0, 300, 450, 300)
     }
 
 }
@@ -37,12 +37,12 @@ drawImages();
 xhr = new XMLHttpRequest();
 xhr.open("GET", "https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&lang=ru&format=text", true);
 xhr.onreadystatechange = function () {
-    if (xhr.status == 200) {
+    if (xhr.status === 200) {
         let resp = xhr.responseText;
         console.log(resp);
         ctx.font = 'Bold 14px Arial';
         ctx.fillStyle = "rgba(0,0,0,0.3)";
-        ctx.fillRect(0, 0, 600, 300);
+        ctx.fillRect(0, 0, 900, 600);
         ctx.fillStyle = "white";
         ctx.TextAlight = "center";
         let words = xhr.responseText.split(" ");
@@ -64,16 +64,13 @@ xhr.onreadystatechange = function () {
                 line = testLine;
             }
         }
-
-
     }
 };
 xhr.send();
 
-
 let link = document.createElement('a');
 link.innerHTML = 'download image';
-link.addEventListener('click', function (ev) {
+link.addEventListener('click', function () {
     link.href = canvas.toDataURL();
     link.download = "mypainting.png";
 }, false);
