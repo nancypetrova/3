@@ -47,7 +47,7 @@ xhr.onreadystatechange = function () {
         ctx.TextAlight = "center";
         let words = xhr.responseText.split(" ");
         let countword = words.length;
-        let maxWigth = 290;
+        let maxWigth = 400;
         let marginLeft = 8;
         let marginTop = 90;
         let lineHeight = 20;
@@ -64,6 +64,7 @@ xhr.onreadystatechange = function () {
                 line = testLine;
             }
         }
+        ctx.fillText(line, marginLeft, marginTop)
     }
 };
 xhr.send();
